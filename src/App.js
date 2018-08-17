@@ -52,38 +52,41 @@ class App extends Component {
     var simpleStorageInstance
 
     // Get accounts.
-    this.state.web3.eth.getAccounts((error, accounts) => {
-      simpleStorage.deployed().then((instance) => {
-        simpleStorageInstance = instance
-
-        // Stores a given value, 5 by default.
-        return simpleStorageInstance.set(5, {from: accounts[0]})
-      }).then((result) => {
-        // Get the value from the contract to prove it worked.
-        return simpleStorageInstance.get.call(accounts[0])
-      }).then((result) => {
-        // Update state with the result.
-        return this.setState({ storageValue: result.c[0] })
-      })
-    })
+    // this.state.web3.eth.getAccounts((error, accounts) => {
+    //   simpleStorage.deployed().then((instance) => {
+    //     simpleStorageInstance = instance
+    //
+    //     // Stores a given value, 5 by default.
+    //     return simpleStorageInstance.set(5, {from: accounts[0]})
+    //   }).then((result) => {
+    //     // Get the value from the contract to prove it worked.
+    //     return simpleStorageInstance.get.call(accounts[0])
+    //   }).then((result) => {
+    //     // Update state with the result.
+    //     return this.setState({ storageValue: result.c[0] })
+    //   })
+    // })
   }
 
   render() {
     return (
       <div className="App">
         <nav className="navbar pure-menu pure-menu-horizontal">
-            <a href="#" className="pure-menu-heading pure-menu-link">Truffle Box</a>
+            <a href="#" className="pure-menu-heading pure-menu-link">Chipper.</a>
         </nav>
 
         <main className="container">
           <div className="pure-g">
             <div className="pure-u-1-1">
-              <h1>Good to Go!</h1>
-              <p>Your Truffle Box is installed and ready.</p>
-              <h2>Smart Contract Example</h2>
-              <p>If your contracts compiled and migrated successfully, below will show a stored value of 5 (by default).</p>
-              <p>Try changing the value stored on <strong>line 59</strong> of App.js.</p>
-              <p>The stored value is: {this.state.storageValue}</p>
+              <h1>Your data! Changing lives.</h1>
+              <p>Your data is stored on IPFS & the Ethereum Blockchain.</p>
+              <img src="" alt=""/>
+              <h2>Upload Data</h2>
+              <form >
+                <input type='file'  />
+                <input type='submit' />
+              </form>
+              
             </div>
           </div>
         </main>
