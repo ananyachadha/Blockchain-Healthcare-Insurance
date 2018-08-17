@@ -13,9 +13,13 @@ class App extends Component {
     super(props)
 
     this.state = {
+      ipfsHash: '',
       storageValue: 0,
-      web3: null
+      web3: null,
+      buffer: null
     }
+    this.captureFile = this.captureFile.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
   }
 
   componentWillMount() {
@@ -67,7 +71,29 @@ class App extends Component {
     //   })
     // })
   }
+  captureFile(event){
+    event.preventDefault()
+    const file = event.target.files[0]
+    const reader = new window.FileReader()
+    reader.readAsArrayBuffer(file)
+    reader.onloadend = () => {
+      this.setState({ buffer:Buffer(reader.result) })
+      console.log("buffer",this.state.buffer)
+    }
+  }
+  onSubmit(event){
+    event.preventDefault()
+    ipfs.files.add(this.state.buffer, (error, result) => {
+      if(error){
+        console.error(error)
+        return
+      }
+      this.setState({ ipfsHash: result[0].hash })
+      console.log('ipfsHash',this.state.ipfsHash)
+    })
 
+
+  }
   render() {
     return (
       <div className="App">
@@ -82,11 +108,10 @@ class App extends Component {
               <p>Your data is stored on IPFS & the Ethereum Blockchain.</p>
               <img src="" alt=""/>
               <h2>Upload Data</h2>
-              <form >
-                <input type='file'  />
+              <form onSubmit={this.onSubmit}>
+                <input type='file' onChange={this.captureFile} />
                 <input type='submit' />
               </form>
-              
             </div>
           </div>
         </main>
