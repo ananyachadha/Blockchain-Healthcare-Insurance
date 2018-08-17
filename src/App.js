@@ -106,7 +106,7 @@ class App extends Component {
             <div className="pure-u-1-1">
               <h1>Your data! Changing lives.</h1>
               <p>Your data is stored on IPFS & the Ethereum Blockchain.</p>
-              <img src="" alt=""/>
+              <img src={`https://ipfs.io/ipfs/${this.state.ipfsHash}`} alt=""/>
               <h2>Upload Data</h2>
               <form onSubmit={this.onSubmit}>
                 <input type='file' onChange={this.captureFile} />
