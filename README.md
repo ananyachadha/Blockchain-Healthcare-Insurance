@@ -1,4 +1,4 @@
-# ConsenSys-Final-Project
+# Blockchain Healthcare Insurance - Made as prjoect at ConsenSys
 Insurance Pricing on Ethereum | Reducing Healthcare costs in the US
 
 Healthcare costs in the United States are extremely expensive. 
